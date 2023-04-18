@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Cue-Cetera.iml" filepath="$PROJECT_DIR$/.idea/Cue-Cetera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cue-Cetera.iml" filepath="$PROJECT_DIR$/Cue-Cetera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cue_cetera/cue_cetera.iml" filepath="$PROJECT_DIR$/cue_cetera/cue_cetera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cue_cetera/android/app/src/debug/debug.iml" filepath="$PROJECT_DIR$/cue_cetera/android/app/src/debug/debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cue_cetera/android/app/src/profile/profile.iml" filepath="$PROJECT_DIR$/cue_cetera/android/app/src/profile/profile.iml" />
     </modules>
   </component>
 </project>

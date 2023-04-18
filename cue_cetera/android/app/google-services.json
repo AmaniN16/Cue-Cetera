@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "165523940817",
+    "firebase_url": "https://cue-cetera-726df-default-rtdb.firebaseio.com",
+    "project_id": "cue-cetera-726df",
+    "storage_bucket": "cue-cetera-726df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165523940817:android:a009fcd6f794570e0cecf0",
+        "android_client_info": {
+          "package_name": "com.example.cue_cetera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165523940817-40haik14mfh5nn9gelmqonicat3eqel1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8aNJlnUBGzQf2X_0ily890ZDNfqUqa5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165523940817-40haik14mfh5nn9gelmqonicat3eqel1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "165523940817-69ont7jg8d21fmo5j6oq1hjr3854i8sr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cueCetera"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:open_file/open_file.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:flutter/widgets.dart';
@@ -9,6 +10,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'firebase_options.dart';
+
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:chaquopy/chaquopy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -156,7 +160,7 @@ class videoUpload extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>  Test(picked.files.first.path.toString())),
+                              builder: (context) =>  Test(picked.files.first.path!)),
                         );
                       }
                     }
@@ -186,17 +190,19 @@ class Test extends StatefulWidget {
   @override
   State<Test> createState() => playVideo(filePath);
 }
+
 class playVideo extends State<Test> {
   String filePath;
 
   playVideo(this.filePath);
-
   VideoPlayerController? _videoPlayerController;
-
   loadVideoPlayer(File file) {
-    if (_videoPlayerController != null) {
+    if(_videoPlayerController != null) {
       _videoPlayerController!.dispose();
     }
+    print(filePath.toString() + " HII");
+
+    OpenFile.open(filePath!);
 
     _videoPlayerController = VideoPlayerController.file(file);
     _videoPlayerController!.initialize().then((value) {
@@ -262,8 +268,26 @@ class playVideo extends State<Test> {
       throw Exception('Failed to save video');
     }
 
+       // final path = 'src/main/python/predictLabels.py';
+    // File backend = File(path);
+    String contents;
+
+      try {
+        // Read the file
+        contents = await loadAsset();
+      }
+      catch(e){
+        throw Exception('File not found');
+      }
+
+    Chaquopy.executeCode(contents);
+
     setState(() {
       loadVideoPlayer(file);
     });
+  }
+
+  Future<String> loadAsset() async {
+    return await rootBundle.loadString('assets/predictLabels.py');
   }
 }

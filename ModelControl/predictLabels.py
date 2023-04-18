@@ -31,7 +31,14 @@ class Emotion_ML:
       dbObj()
       ref = ref = db.reference("Videos/paths")
       path = ref.order_by_child('Path').get()
-      currPath = path['Path']
+      path_val = ""
+
+      for key, val in path.items():
+          path_val = val
+          path_val = path_val['Path']
+
+      if path_val[0] == "\\":
+        currPath = path_val[1:]
 
       source_blob_name = currPath
 
