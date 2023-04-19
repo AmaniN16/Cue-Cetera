@@ -276,6 +276,7 @@ class playVideo extends State<Test> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff1e133d),
         onPressed: selectVideo,
         child: Icon(
           Icons.play_circle_outline_outlined,
