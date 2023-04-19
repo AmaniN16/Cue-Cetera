@@ -9,10 +9,12 @@ import 'package:flutter/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_ml_model_downloader/firebase_ml_model_downloader.dart';
 import 'firebase_options.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:chaquopy/chaquopy.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -268,8 +270,6 @@ class playVideo extends State<Test> {
       throw Exception('Failed to save video');
     }
 
-       // final path = 'src/main/python/predictLabels.py';
-    // File backend = File(path);
     String contents;
 
       try {
@@ -280,7 +280,21 @@ class playVideo extends State<Test> {
         throw Exception('File not found');
       }
 
-    Chaquopy.executeCode(contents);
+    String _outputOrError = "";
+
+    final _result = await Chaquopy.executeCode(contents);
+    setState(() {
+      _outputOrError = _result['textOutputOrError'] ?? '';
+    });
+
+    final imgRef = storage.child("imgs");
+    final appDocDir = await getApplicationDocumentsDirectory();
+    final imgPath = "${appDocDir.absolute}/imgs";
+    final imgs = File(imgPath);
+
+    final downloadTask = imgRef.writeToFile(imgs);
+
+    // FirebaseModelDownloader.instance.getModel("cue-classifier");
 
     setState(() {
       loadVideoPlayer(file);
@@ -288,6 +302,6 @@ class playVideo extends State<Test> {
   }
 
   Future<String> loadAsset() async {
-    return await rootBundle.loadString('assets/predictLabels.py');
+    return await rootBundle.loadString('assets/predictLabels.txt');
   }
 }
